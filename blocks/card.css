@@ -1,4 +1,4 @@
-.card {
+.card__photo {
     display: flex;
     flex-direction: column;
     list-style: none;
