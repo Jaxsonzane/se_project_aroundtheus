@@ -4,7 +4,7 @@
 
 * Intro  
 * Figma  
-* Images  
+* Images! 
   
 **Intro**
   
