@@ -20,5 +20,9 @@ The way you'll do this at work is by exporting images directly from Figma — we
   
 Good luck and have fun!
 
+
+Project Information: 
+    This project is a website using resonsive design to display images and text. It is a mock social media site where users can add images and text. Right now we are using HTML and CSS eventually we will add JS to make it more interactive.
+
 live site -- https://jaxsonzane.github.io/se_project_aroundtheus/
 
