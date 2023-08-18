@@ -4,11 +4,26 @@
     max-width: 880px;
 }
 
-.header__logo {
+.header__logo-image {
     width: 173px;
     height: 33px;
     margin-bottom: 41px;
 }
 
+
+@media screen and (max-width: 880px) {
+    .header__logo-image {
+        width: 128px;
+        height: 24px;
+    }
+
+    .header {
+        width: 328px;
+        height: 56px;
+        margin-top: 28px;
+        margin-left: 27px;
+        margin-right: 167px;
+    }
+}
 
 
