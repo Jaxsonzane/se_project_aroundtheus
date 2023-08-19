@@ -1,5 +1,5 @@
 .footer {
-  padding: 0; 
+  padding: 0 auto;
   margin-top: 67px;
   margin-bottom: 60px;
 }
@@ -7,7 +7,7 @@
 .footer__text {
   max-width: 318px;
   color: #545454;
-  font-family: 'inter', sans-serif;
+  font-family: "Inter", sans-serif, Arial;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
