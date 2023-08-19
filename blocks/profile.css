@@ -27,6 +27,7 @@
 }
 
 .profile__button-edit:hover {
+  opacity: 60%;
 }
 
 .profile__button-add {
@@ -41,6 +42,7 @@
 }
 
 .profile__button-add:hover {
+  opacity: 60%;
 }
 
 .profile__title {
@@ -76,8 +78,8 @@
 
 .profile__image {
   border-radius: 50%;
-  max-width: 168.75px;
-  max-height: 127.5px;
+  max-width: 120px;
+  max-height: 120px;
   object-fit: cover;
   margin-right: 32px;
   box-sizing: border-box;

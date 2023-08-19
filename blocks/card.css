@@ -45,6 +45,7 @@
 }
 
 .card__button-like:hover {
+  opacity: 50%;
 }
 
 .card__title {
