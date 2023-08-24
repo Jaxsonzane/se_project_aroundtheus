@@ -109,6 +109,36 @@
       </footer>
     </div>
 
+    <div class="modal">
+      <div class="modal__container">
+        <div class="modal__opended"></div>
+        <button class="modal__button-close" type="button"></button>
+        
+        <form class="modal__form">
+          <p class="modal__heading">Edit profile</p>
+
+          <label for="title" class="modal__label"></label>
+          <input 
+          type="text" 
+          name="title" 
+          class="modal__input"
+          id="title"
+          value="Jacques Cousteau"
+          >
+
+          <label for="subtitle" class="modal__label"></label>
+          <input 
+          type="text" 
+          name="subtitle" 
+          class="modal__input"
+          id="subtitle"
+          value="Explorer"
+          >
+          <button class="modal__button" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
