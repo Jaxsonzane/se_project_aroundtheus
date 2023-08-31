@@ -21,14 +21,14 @@ const initialCards = [
 }, 
 {
     name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago-di-braies.jpg",
-}
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
+},
 
 
 ]
 
 /* -------------------------------------------------------------------------- */
-/*                                  elecments                                 */
+/*                                  elements                                 */
 /* -------------------------------------------------------------------------- */
 
 const profileEditButton = document.querySelector('#profile-edit-button');
@@ -39,6 +39,8 @@ const profileSubtitle = document.querySelector('.profile__subtitle');
 const profileTitleInput = document.querySelector('#profile-title-input');
 const profileSubtitleInput = document.querySelector('#profile-subtitle-input');
 const profileEditForm = profileEditModal.querySelector('.modal__form');
+const CardListEl = document.querySelector('.card');
+const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
 
 /* -------------------------------------------------------------------------- */
 /*                                  functions                                 */
@@ -46,6 +48,16 @@ const profileEditForm = profileEditModal.querySelector('.modal__form');
 
 function closePopup() {
     profileEditModal.classList.remove('modal__opened');
+}
+function getCardElement(cardData) {
+    const cardElement = cardTemplate.cloneNode(true);
+    const cardImageEl = cardElement.querySelector('.card__image');
+    const cardTitleEl = cardElement.querySelector('.card__title');
+  
+  
+    cardImageEl.src = cardData.link;
+    cardTitleEl.textContent = cardData.name;
+    return cardElement;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -74,3 +86,8 @@ profileEditButton.addEventListener('click', () => {
 profileEditCloseButton.addEventListener('click', closePopup);
 
 profileEditForm.addEventListener('submit', handleProfileEditSubmit);
+
+initialCards.forEach((cardData) => {
+    const cardElement = getCardElement(cardData);
+  CardListEl.append(cardElement);
+});

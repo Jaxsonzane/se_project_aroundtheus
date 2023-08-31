@@ -18,7 +18,9 @@
           />
         </div>
       </header>
-
+      <!-- ----------------------------------------------------------------------- -->
+      <!--                                 profile                                 -->
+      <!-- ----------------------------------------------------------------------- -->
       <main class="content">
         <section class="profile">
           <img
@@ -33,82 +35,24 @@
           </div>
           <button class="profile__button-add" type="button"></button>
         </section>
+        <!-- ----------------------------------------------------------------------- -->
+        <!--                              card section                               -->
+        <!-- ----------------------------------------------------------------------- -->
         <section class="cards page__section">
           <ul class="card">
-            <li class="card__list-item">
-              <img
-                src="./images/yosemite-valley.jpg"
-                alt="yosemite valley"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button class="card__button-like" type="button"></button>
-              </div>
-            </li>
-            <li class="card__list-item">
-              <img
-                src="./images/lake-louise.png"
-                alt="lake louise"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lake Louise</h2>
-                <button class="card__button-like" type="button"></button>
-              </div>
-            </li>
-            <li class="card__list-item">
-              <img
-                src="./images/bald-mountains.png"
-                alt="bald mountains"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Bald Mountains</h2>
-                <button class="card__button-like" type="button"></button>
-              </div>
-            </li>
-            <li class="card__list-item">
-              <img
-                src="./images/latemar.png"
-                alt="latemar"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Latemar</h2>
-                <button class="card__button-like" type="button"></button>
-              </div>
-            </li>
-            <li class="card__list-item">
-              <img
-                src="./images/vanoise-national-park.png"
-                alt="vanoise park"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Vanoise National Park</h2>
-                <button class="card__button-like" type="button"></button>
-              </div>
-            </li>
-            <li class="card__list-item">
-              <img
-                src="./images/lago-di-braies.png"
-                alt="lago di braies"
-                class="card__image"
-              />
-              <div class="card__description">
-                <h2 class="card__title">Lago di Braies</h2>
-                <button class="card__button-like" type="button"></button>
-              </div>
-            </li>
           </ul>
         </section>
       </main>
+      <!-- ----------------------------------------------------------------------- -->
+      <!--                                 footer                                  -->
+      <!-- ----------------------------------------------------------------------- -->
       <footer class="footer page__section">
         <p class="footer__text">&copy; 2022 Around The U.S.</p>
       </footer>
     </div>
-
+      <!-- ----------------------------------------------------------------------- -->
+      <!--                                  modal                                  -->
+      <!-- ----------------------------------------------------------------------- -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
@@ -137,6 +81,20 @@
         </form>
       </div>
     </div>
+
+    <template id="card-template">
+      <li class="card__list-item">
+        <img
+          src=""
+          alt=""
+          class="card__image"
+        />
+        <div class="card__description">
+          <h2 class="card__title"></h2>
+          <button class="card__button-like" type="button"></button>
+        </div>
+      </li>
+    </template>
 
     <script src="./scripts/index.js"></script>
   </body>
