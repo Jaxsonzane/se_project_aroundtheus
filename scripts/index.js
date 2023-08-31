@@ -27,15 +27,50 @@ const initialCards = [
 
 ]
 
+/* -------------------------------------------------------------------------- */
+/*                                  elecments                                 */
+/* -------------------------------------------------------------------------- */
+
 const profileEditButton = document.querySelector('#profile-edit-button');
 const profileEditModal = document.querySelector('#profile-edit-modal');
 const profileEditCloseButton = profileEditModal.querySelector('.modal__close');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const profileTitleInput = document.querySelector('#profile-title-input');
+const profileSubtitleInput = document.querySelector('#profile-subtitle-input');
+const profileEditForm = profileEditModal.querySelector('.modal__form');
+
+/* -------------------------------------------------------------------------- */
+/*                                  functions                                 */
+/* -------------------------------------------------------------------------- */
+
+function closePopup() {
+    profileEditModal.classList.remove('modal__opened');
+}
+
+/* -------------------------------------------------------------------------- */
+/*                               event handlers                               */
+/* -------------------------------------------------------------------------- */
+
+function handleProfileEditSubmit(e) {
+    e.preventDefault();
+    profileTitle.textContent = profileTitleInput.value;
+    profileSubtitle.textContent = profileSubtitleInput.value;
+    closePopup();
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/*                               event listeners                              */
+/* -------------------------------------------------------------------------- */
 
 profileEditButton.addEventListener('click', () => {
+    profileTitleInput.value = profileTitle.textContent;
+    profileSubtitleInput.value = profileSubtitle.textContent;
     profileEditModal.classList.add('modal__opened')
 });
 
-profileEditCloseButton.addEventListener('click', () => {
-    profileEditModal.classList.remove('modal__opened')
-});
+profileEditCloseButton.addEventListener('click', closePopup);
 
+profileEditForm.addEventListener('submit', handleProfileEditSubmit);
