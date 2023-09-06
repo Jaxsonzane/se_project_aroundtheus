@@ -33,7 +33,7 @@
             <button class="profile__button-edit" id="profile-edit-button" type="button"></button>
             <p class="profile__subtitle">Explorer</p>
           </div>
-          <button class="profile__button-add" type="button"></button>
+          <button class="profile__button-add" id="profile-add-button" type="button"></button>
         </section>
         <!-- ----------------------------------------------------------------------- -->
         <!--                              card section                               -->
@@ -53,14 +53,12 @@
       <!-- ----------------------------------------------------------------------- -->
       <!--                                  modal                                  -->
       <!-- ----------------------------------------------------------------------- -->
-    
-    <!-- edit modal -->
-      <div class="modal" id="profile-edit-modal">
+    <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         
         <form class="modal__form">
-          <p class="modal__heading">Edit profile</p>
+          <p class="modal__heading">Edit Profile</p>
 
           <label class="modal__label"></label>
           <input 
@@ -82,35 +80,37 @@
           <button class="button modal__button" type="submit">Save</button>
         </form>
       </div>
-    </div>
-    <!-- add modal -->
-    <div class="modal" id="card-add-modal">
+      <!-- ------------------------add button----------------------------------------------- -->
+    <div class="modal" id="profile-add-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         
         <form class="modal__form" id="add-card-form">
-          <p class="modal__heading">New place</p>
+          <p class="modal__heading">New Place</p>
 
-          <label class="modal__label modal__input_type_title"></label>
+          <label class="modal__label"></label>
           <input 
           type="text" 
           name="title" 
-          class="modal__input"
-          id="card-title-input"
+          class="modal__input modal__input_type_title"
+          id="profile-title-input"
           placeholder="Title"
           >
 
-          <label class="modal__label modal__input_type_image_link"></label>
+          <label class="modal__label"></label>
           <input 
           type="text" 
-          name="url" 
-          class="modal__input"
-          id="card-subtitle-input"
-          placeholder="Image link"
+          name="link" 
+          class="modal__input modal__input_type_link"
+          id="profile-subtitle-input"
+          placeholder="Image Link"
           >
-          <button class="button modal__button" type="submit">Create</button>
+          <button class="button modal__button" type="submit">Save</button>
         </form>
       </div>
+    </div>
+    </div>
+    
     <template id="card-template">
       <li class="card__list-item">
         <img
