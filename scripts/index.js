@@ -48,6 +48,10 @@ const initialCards = [
     
     const cardListEl = document.querySelector('.card');
     const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
+
+    // const nameInput = profileEditForm.querySelector('.modal__input_type_name');
+    const cardTitleInput = profileAddForm.querySelector('.modal__input_type_title');
+    const cardLinkInput = profileAddForm.querySelector('.modal__input_type_link');
     
     /* -------------------------------------------------------------------------- */
     /*                                  functions                                 */
@@ -68,6 +72,11 @@ const initialCards = [
         cardTitleEl.textContent = cardData.name;
         return cardElement;
     }
+
+    function renderCard (cardData, cardListEl) {    
+        const cardElement = getCardElement(cardData);
+        cardListEl.prepend(cardElement);
+    }
     
     
     /* -------------------------------------------------------------------------- */
@@ -78,7 +87,14 @@ const initialCards = [
         e.preventDefault();
         profileTitle.textContent = profileTitleInput.value;
         profileSubtitle.textContent = profileSubtitleInput.value;
-        closePopup();
+        closePopup(profileEditModal);
+    }
+    function handleAddCardFormSubmit(e) {
+        e.preventDefault();
+        const titleValue = cardTitleInput.value;
+        const linkValue = cardLinkInput.value;
+        renderCard({name: titleValue, link: linkValue}, cardListEl);
+        closePopup(profileAddModal);
     }
     
     
@@ -97,15 +113,17 @@ const initialCards = [
         profileSubtitleInput.value = profileSubtitle.textContent;
         profileAddModal.classList.add('modal_opened')
     });
+    
     profileEditCloseButton.addEventListener('click', closePopup);
     profileEditForm.addEventListener('submit', handleProfileEditSubmit);
     profileAddCloseButton.addEventListener('click', closePopup);
-    profileAddForm.addEventListener('submit', handleProfileEditSubmit);
+    profileAddForm.addEventListener('submit', handleAddCardFormSubmit);
     
     // for each loop to add cards to the page
     initialCards.forEach((cardData) => {
         const cardElement = getCardElement(cardData);
       cardListEl.append(cardElement);
     });
+    initialCards.forEach(cardData => renderCard(cardData, cardListEl));
 
 
