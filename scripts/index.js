@@ -33,9 +33,16 @@ const initialCards = [
     const profileEditButton = document.querySelector('#profile-edit-button');
     const profileEditModal = document.querySelector('#profile-edit-modal');
     const profileEditCloseButton = profileEditModal.querySelector('.modal__close');
+    
     const profileAddButton = document.querySelector('#profile-add-button');
     const profileAddModal = document.querySelector('#profile-add-modal');
     const profileAddCloseButton = profileAddModal.querySelector('.modal__close');
+   // preview image
+    const previewImageModal = document.querySelector('#preview-modal-image');
+    const previewImageCloseModal = previewImageModal.querySelector('.modal__close');
+    
+    const previewImgEl = previewImageModal.querySelector('.preview__img_card');
+    const previewImgTitle = previewImageModal.querySelector('.preview__title_card');
     
     
     const profileTitle = document.querySelector('.profile__title');
@@ -59,7 +66,13 @@ const initialCards = [
     function closePopup() {
         profileEditModal.classList.remove('modal_opened');
         profileAddModal.classList.remove('modal_opened');
+        previewImageModal.classList.remove('modal_opened');
     }
+    function openPopup(modal) {
+        modal.classList.add('modal_opened');
+    }
+
+
     function getCardElement(cardData) {
         const cardElement = cardTemplate.cloneNode(true);
         const cardImageEl = cardElement.querySelector('.card__image');
@@ -73,16 +86,25 @@ const initialCards = [
             });
         deleteButton.addEventListener('click', () => {
             cardElement.remove();
-        });
-        
-            
+            });
+        cardImageEl.addEventListener("click", () => {
+            previewImgEl.src = cardData.link;
+            previewImgEl.alt = cardData.name;
+            previewImgTitle.textContent = cardData.name;
+            openPopup(previewImageModal);
+            });
+        previewImageCloseModal.addEventListener("click", () =>
+            closePopup(previewImageModal)
+          );
 
 
         cardImageEl.src = cardData.link;
         cardImageEl.alt = cardData.name;
         cardTitleEl.textContent = cardData.name;
         return cardElement;
+
     }
+
 
     function renderCard (cardData, cardListEl) {    
         const cardElement = getCardElement(cardData);
