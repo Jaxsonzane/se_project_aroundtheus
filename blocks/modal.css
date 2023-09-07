@@ -109,12 +109,12 @@
     padding: 0;
 }
 
-.preview__img_card {
+.preview__img_modal {
     width: 240px;
     height: 299px;
   }
   
-.preview__title_card {
+.preview__title_modal {
     font-family: "Inter", Arial, sans-serif;
     font-weight: 400px;
     font-size: 12px;
@@ -185,7 +185,7 @@
         padding: 0;
     }
 
-    .preview__img_card {
+    .preview__img_modal {
         width: 433px;
         height: 540px;
       }
