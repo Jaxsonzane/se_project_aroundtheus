@@ -23,8 +23,6 @@ const initialCards = [
         name: "Lago di Braies",
         link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
     },
-    
-    
     ]
     
     /* -------------------------------------------------------------------------- */
@@ -38,6 +36,7 @@ const initialCards = [
     const profileAddButton = document.querySelector('#profile-add-button');
     const profileAddModal = document.querySelector('#profile-add-modal');
     const profileAddCloseButton = profileAddModal.querySelector('.modal__close');
+    
     
     const profileTitle = document.querySelector('.profile__title');
     const profileSubtitle = document.querySelector('.profile__subtitle');
@@ -65,8 +64,12 @@ const initialCards = [
         const cardElement = cardTemplate.cloneNode(true);
         const cardImageEl = cardElement.querySelector('.card__image');
         const cardTitleEl = cardElement.querySelector('.card__title');
-      
-      
+        const likeButton = cardElement.querySelector('.card__button-like');
+        
+        likeButton.addEventListener('click', () => {
+            likeButton.classList.toggle('card__button-like_active');        
+            });
+
         cardImageEl.src = cardData.link;
         cardImageEl.alt = cardData.name;
         cardTitleEl.textContent = cardData.name;
@@ -125,5 +128,7 @@ const initialCards = [
       cardListEl.append(cardElement);
     });
     initialCards.forEach(cardData => renderCard(cardData, cardListEl));
-
-
+    // like button
+    const likeButtons = document.querySelectorAll('.card__button-like');
+    likeButtons.forEach(likeButton => { 
+    });
