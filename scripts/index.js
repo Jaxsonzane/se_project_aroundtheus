@@ -47,8 +47,8 @@ const initialCards = [
     
     const profileTitle = document.querySelector('.profile__title');
     const profileSubtitle = document.querySelector('.profile__subtitle');
-    const profileTitleInput = document.querySelector('#profile-title-input');
-    const profileSubtitleInput = document.querySelector('#profile-subtitle-input');
+    const profileTitleInput = document.querySelector('#modal-profile-title-input');
+    const profileSubtitleInput = document.querySelector('#modal-profile-subtitle-input');
     const profileEditForm = profileEditModal.querySelector('.modal__form');
     const profileAddForm = profileAddModal.querySelector('.modal__form');
     
