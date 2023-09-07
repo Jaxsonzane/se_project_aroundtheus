@@ -109,12 +109,12 @@
     padding: 0;
 }
 
-.preview_image {
+.modal_image {
     width: 240px;
     height: 299px;
   }
   
-.preview_title {
+.modal_title {
     font-family: "Inter", Arial, sans-serif;
     font-weight: 400px;
     font-size: 12px;
@@ -185,7 +185,7 @@
         padding: 0;
     }
 
-    .preview_image {
+    .modal_image {
         width: 433px;
         height: 540px;
       }

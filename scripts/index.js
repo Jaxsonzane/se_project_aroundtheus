@@ -41,8 +41,8 @@ const initialCards = [
     const previewImageModal = document.querySelector('#preview-modal-image');
     const previewImageCloseModal = previewImageModal.querySelector('.modal__close');
     
-    const previewImgEl = previewImageModal.querySelector('.preview_image');
-    const previewImgTitle = previewImageModal.querySelector('.preview_title');
+    const previewImgEl = previewImageModal.querySelector('.modal_image');
+    const previewImgTitle = previewImageModal.querySelector('.modal_title');
     
     
     const profileTitle = document.querySelector('.profile__title');
