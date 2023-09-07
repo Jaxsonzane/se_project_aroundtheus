@@ -48,7 +48,7 @@ const initialCards = [
     const cardListEl = document.querySelector('.card');
     const cardTemplate = document.querySelector('#card-template').content.firstElementChild;
 
-    // const nameInput = profileEditForm.querySelector('.modal__input_type_name');
+    
     const cardTitleInput = profileAddForm.querySelector('.modal__input_type_title');
     const cardLinkInput = profileAddForm.querySelector('.modal__input_type_link');
     
@@ -65,10 +65,18 @@ const initialCards = [
         const cardImageEl = cardElement.querySelector('.card__image');
         const cardTitleEl = cardElement.querySelector('.card__title');
         const likeButton = cardElement.querySelector('.card__button-like');
+        const deleteButton = cardElement.querySelector('.card__button-remove');
+
         
         likeButton.addEventListener('click', () => {
             likeButton.classList.toggle('card__button-like_active');        
             });
+        deleteButton.addEventListener('click', () => {
+            cardElement.remove();
+        });
+        
+            
+
 
         cardImageEl.src = cardData.link;
         cardImageEl.alt = cardData.name;
@@ -122,11 +130,7 @@ const initialCards = [
     profileAddCloseButton.addEventListener('click', closePopup);
     profileAddForm.addEventListener('submit', handleAddCardFormSubmit);
     
-    // for each loop to add cards to the page
-    initialCards.forEach((cardData) => {
-        const cardElement = getCardElement(cardData);
-      cardListEl.append(cardElement);
-    });
+    // initial cards
     initialCards.forEach(cardData => renderCard(cardData, cardListEl));
     // like button
     const likeButtons = document.querySelectorAll('.card__button-like');

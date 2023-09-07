@@ -13,11 +13,13 @@
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.5);
     visibility: hidden;
+    
 }
 
 .modal_opened {
     display: flex;
     visibility: visible;
+    opacity: 1;
 }
 
 .modal__container {
@@ -53,8 +55,7 @@
     border: none;
     fill: #fff;
     cursor: pointer;
-    background: transparent url(../images/Close_Icon.svg) no-repeat center;
-   
+    background: transparent url(../images/Close_Icon.svg) no-repeat center; 
 }
 
 .modal__heading {
