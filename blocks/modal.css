@@ -104,14 +104,14 @@
 }
 
 .modal__container_preview {
-    background: transparent;
-    padding: none;
+    width: 240px;
+    height: 299px;
+    padding: 0;
 }
 
 .preview__img_card {
-    width: 433px;
-    height: 540px;
-    position: relative;
+    width: 240px;
+    height: 299px;
   }
   
 .preview__title_card {
@@ -124,6 +124,10 @@
   }
 
 #preview-close-modal {
+    width: 40px;
+    height: 40px;
+    left: 100%;
+    bottom: 100%;
 }
 
 @media screen and (min-width: 601px) {
@@ -181,5 +185,22 @@
         padding: 0;
     }
 
+    .preview__img_card {
+        width: 433px;
+        height: 540px;
+      }
+
+    #preview-close-modal {
+        width: 40px;
+        height: 40px;
+        left: calc(100% + 5px);
+        bottom: calc(100% + 5px);
+    }
+
+    .modal__container_preview {
+        width: 433px;
+        height: 540px;
+        padding: 0;
+    }
     
   }
