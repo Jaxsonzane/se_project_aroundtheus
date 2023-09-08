@@ -14,11 +14,10 @@
     background-color: rgba(0, 0, 0, 0.5);
     visibility: hidden;
     opacity: 0;
-  transition: visibility 0s 0.6s, opacity 0.6s;
+    transition: visibility 0s 0.6s, opacity 0.6s;
 }
 
 .modal_opened {
-    display: flex;
     visibility: visible;
     opacity: 1;
     transition: visibility 0s, opacity 0.6s;
@@ -60,6 +59,10 @@
     background: transparent url(../images/Close_Icon.svg) no-repeat center; 
 }
 
+.modal__close:hover {
+    opacity: 50%;
+}
+
 .modal__heading {
     color: #000;
     font-family: "Inter", sans-serif;
@@ -68,15 +71,14 @@
     font-weight: 900;
     line-height: normal;
     margin-top: 0;
+    margin-right: auto;
     padding: 0;
     padding-bottom: 75px;
-    width: 238px;
 }
 
 .modal__input {
     border: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    width: 238px;
     margin-bottom: 30px;
     padding-bottom: 13px;
     
@@ -92,7 +94,7 @@
 }
 
 .modal__button {
-    max-width: 238px;
+    max-width: 100%;
     width: 100%;
     height: 46px;
     background-color: #000;
@@ -101,6 +103,11 @@
     border-radius: 2px;
     border: none;
     margin-top: 45px;
+    cursor: pointer;
+}
+
+.modal__button:hover {
+    opacity: 50%;
 }
 
 .modal__container_preview {
@@ -123,7 +130,7 @@
     height: 12px;
   }
 
-#preview-close-modal {
+.modal__close_preview {
     width: 40px;
     height: 40px;
     left: 100%;
@@ -146,25 +153,24 @@
  
    
     .modal__close {   
-    width: 40px;
-    height: 40px;
-    background-size: contain;
-    bottom: calc(100% + 5px);
-    left: calc(100% + 5px);
+        width: 40px;
+        height: 40px;
+        background-size: contain;
+        bottom: calc(100% + 5px);
+        left: calc(100% + 5px);
     }
 
     .modal__heading {
+        width: 100%;
         font-size: 24px;
         font-weight: 900;
         margin-right: auto;
-        margin-left: 36px;
         margin-top: 34px;
         margin-bottom: 54px;
         padding-bottom: 0;
     }
 
     .modal__input {
-        max-width: 358px;
         width: 100%;
         height: 27px;
         margin-bottom: 30px;
@@ -177,7 +183,6 @@
     }
 
     .modal__button {
-        max-width: 358px;
         height: 50.152px;
         flex-shrink: 0;
         margin-top: 48px;
@@ -190,7 +195,7 @@
         height: 540px;
       }
 
-    #preview-close-modal {
+    .modal__close_preview {
         width: 40px;
         height: 40px;
         left: calc(100% + 5px);
