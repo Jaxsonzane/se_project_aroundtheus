@@ -137,6 +137,10 @@
     bottom: 100%;
 }
 
+.modal__close_preview:hover {
+    opacity: 50%;
+}
+
 @media screen and (min-width: 601px) {
     
     
