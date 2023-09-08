@@ -146,9 +146,8 @@ previewImageCloseModal.addEventListener('click', () =>
   closePopup(previewImageModal)
 );
 
-profileEditCloseButton.addEventListener('click', closePopup);
+
 profileEditForm.addEventListener('submit', handleProfileEditSubmit);
-profileAddCloseButton.addEventListener('click', closePopup);
 profileAddForm.addEventListener('submit', handleAddCardFormSubmit);
 
 // initial cards

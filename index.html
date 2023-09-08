@@ -30,17 +30,24 @@
           />
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
-            <button class="profile__button-edit" id="profile-edit-button" type="button"></button>
+            <button
+              class="profile__button-edit"
+              id="profile-edit-button"
+              type="button"
+            ></button>
             <p class="profile__subtitle">Explorer</p>
           </div>
-          <button class="profile__button-add" id="profile-add-button" type="button"></button>
+          <button
+            class="profile__button-add"
+            id="profile-add-button"
+            type="button"
+          ></button>
         </section>
         <!-- ----------------------------------------------------------------------- -->
         <!--                              card section                               -->
         <!-- ----------------------------------------------------------------------- -->
         <section class="cards page__section">
-          <ul class="card">
-          </ul>
+          <ul class="card"></ul>
         </section>
       </main>
       <!-- ----------------------------------------------------------------------- -->
@@ -50,62 +57,62 @@
         <p class="footer__text">&copy; 2022 Around The U.S.</p>
       </footer>
     </div>
-      <!-- ----------------------------------------------------------------------- -->
-      <!--                                  modal                                  -->
-      <!-- ----------------------------------------------------------------------- -->
+    <!-- ----------------------------------------------------------------------- -->
+    <!--                                  modal                                  -->
+    <!-- ----------------------------------------------------------------------- -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
-        
+
         <form class="modal__form">
           <h2 class="modal__heading">Edit Profile</h2>
 
           <label class="modal__label"></label>
-          <input 
-          type="text" 
-          name="title" 
-          class="modal__input .modal__input_type_name"
-          id="modal-profile-title-input"
-          placeholder="Name"
-          >
+          <input
+            type="text"
+            name="title"
+            class="modal__input .modal__input_type_name"
+            id="modal-profile-title-input"
+            placeholder="Name"
+          />
 
           <label class="modal__label"></label>
-          <input 
-          type="text" 
-          name="subtitle" 
-          class="modal__input"
-          id="modal-profile-subtitle-input"
-          placeholder="Description"
-          >
+          <input
+            type="text"
+            name="subtitle"
+            class="modal__input"
+            id="modal-profile-subtitle-input"
+            placeholder="Description"
+          />
           <button class="button modal__button" type="submit">Save</button>
         </form>
       </div>
-      </div>
-      <!-- ------------------------add button----------------------------------------------- -->
+    </div>
+    <!-- ------------------------add button----------------------------------------------- -->
     <div class="modal" id="profile-add-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
-        
+
         <form class="modal__form" id="add-card-form">
           <h2 class="modal__heading">New Place</h2>
 
           <label class="modal__label"></label>
-          <input 
-          type="text" 
-          name="title" 
-          class="modal__input modal__input_type_title"
-          id="profile-title-input"
-          placeholder="Title"
-          >
+          <input
+            type="text"
+            name="title"
+            class="modal__input modal__input_type_title"
+            id="profile-title-input"
+            placeholder="Title"
+          />
 
           <label class="modal__label"></label>
-          <input 
-          type="text" 
-          name="link" 
-          class="modal__input modal__input_type_link"
-          id="profile-subtitle-input"
-          placeholder="Image Link"
-          >
+          <input
+            type="text"
+            name="link"
+            class="modal__input modal__input_type_link"
+            id="profile-subtitle-input"
+            placeholder="Image Link"
+          />
           <button class="button modal__button" type="submit">Save</button>
         </form>
       </div>
@@ -113,23 +120,19 @@
     <!-- ------------------------preview modal----------------------------------------------- -->
     <div class="modal" id="preview-modal-image">
       <div class="modal__container modal__container_preview">
-        <button class="modal__close modal__close_preview" id="preview-close-modal" type="button"></button>
-        <img
-        src="#"
-        alt=""
-        class="modal__image"
-        />
-          <h2 class="modal__title"></h2>
+        <button
+          class="modal__close modal__close_preview"
+          id="preview-close-modal"
+          type="button"
+        ></button>
+        <img src="#" alt="" class="modal__image" />
+        <h2 class="modal__title"></h2>
+      </div>
     </div>
-    </div>
-    
+
     <template id="card-template">
       <li class="card__list-item">
-        <img
-        src="#"
-        alt=""
-        class="card__image"
-        />
+        <img src="#" alt="" class="card__image" />
         <button class="card__button-remove" type="button"></button>
         <div class="card__description">
           <h2 class="card__title"></h2>
