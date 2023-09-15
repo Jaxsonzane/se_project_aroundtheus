@@ -71,20 +71,29 @@
           <input
             type="text"
             name="title"
-            class="modal__input .modal__input_type_name"
+            class="modal__input .modal__input_type_name popup__input_type_error"
             id="modal-profile-title-input"
             placeholder="Name"
+            minlength="2"
+            maxlength="40"
+            required
           />
+          <span class="popup__error_visible" id="modal-profile-title-input-error">Please fill out this field</span>
+            
 
           <label class="modal__label"></label>
           <input
             type="text"
             name="subtitle"
-            class="modal__input"
+            class="modal__input popup__input_type_error"
             id="modal-profile-subtitle-input"
             placeholder="Description"
+            minlength="2"
+            maxlength="200"
+            required
           />
-          <button class="button modal__button" type="submit">Save</button>
+          <span class="popup__error_visible" id="modal-profile-subtitle-input-error">Please fill out this field</span>
+          <button class="button modal__button popup__button_disabled" type="submit" disabled>Save</button>
         </form>
       </div>
     </div>
@@ -142,5 +151,6 @@
     </template>
 
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validation.js" defer></script>
   </body>
 </html>

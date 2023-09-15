@@ -60,7 +60,6 @@ const cardTemplate =
 
 const cardTitleInput = profileAddForm.querySelector('.modal__input_type_title');
 const cardLinkInput = profileAddForm.querySelector('.modal__input_type_link');
-
 /* -------------------------------------------------------------------------- */
 /*                                  functions                                 */
 /* -------------------------------------------------------------------------- */
