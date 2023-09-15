@@ -67,21 +67,21 @@
         <form class="modal__form">
           <h2 class="modal__heading">Edit Profile</h2>
 
-          <label class="modal__label"></label>
+          <label class="modal__label">
           <input
             type="text"
             name="title"
-            class="modal__input .modal__input_type_name popup__input_type_error"
+            class="modal__input .modal__input_type_name"
             id="modal-profile-title-input"
             placeholder="Name"
             minlength="2"
             maxlength="40"
             required
           />
-          <span class="popup__error_visible" id="modal-profile-title-input-error">Please fill out this field</span>
-            
+          <span class="modal__error" id="modal-profile-title-input-error">Please fill out this field.</span>
+          </label> 
 
-          <label class="modal__label"></label>
+          <label class="modal__label">
           <input
             type="text"
             name="subtitle"
@@ -92,8 +92,9 @@
             maxlength="200"
             required
           />
-          <span class="popup__error_visible" id="modal-profile-subtitle-input-error">Please fill out this field</span>
-          <button class="button modal__button popup__button_disabled" type="submit" disabled>Save</button>
+          <span class="modal__error" id="modal-profile-subtitle-input-error">Please fill out this field.</span>
+        </label>
+          <button class="button modal__button modal__button_disabled" type="submit" disabled>Save</button>
         </form>
       </div>
     </div>
@@ -105,7 +106,7 @@
         <form class="modal__form" id="add-card-form">
           <h2 class="modal__heading">New Place</h2>
 
-          <label class="modal__label"></label>
+          <label class="modal__label">
           <input
             type="text"
             name="title"
@@ -113,8 +114,10 @@
             id="profile-title-input"
             placeholder="Title"
           />
+          <span class="modal__error" id="profile-title-input-error">Please fill out this field.</span>
+          </label> 
 
-          <label class="modal__label"></label>
+          <label class="modal__label">
           <input
             type="text"
             name="link"
@@ -122,6 +125,8 @@
             id="profile-subtitle-input"
             placeholder="Image Link"
           />
+          <span class="modal__error" id="profile-subtitle-input-error">Please enter a web address.</span>
+          </label> 
           <button class="button modal__button" type="submit">Save</button>
         </form>
       </div>
