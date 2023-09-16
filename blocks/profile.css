@@ -123,7 +123,7 @@
     display: flex;
     align-items: center;
     font-size: 22px;
-    width: 196px;
+    max-width: 196px;
     line-height: normal;
   }
 

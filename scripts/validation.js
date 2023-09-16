@@ -18,10 +18,10 @@ function hideInputError(formEl, inputEl, {inputErrorClass, errorClass}) {
 
 function checkInputValidity(formEl, inputEl, options) {
     if(!inputEl.validity.valid) {
-        showInputError(formEl, inputEl, options);
-    } else {
+      return  showInputError(formEl, inputEl, options);
+    } 
         hideInputError(formEl, inputEl, options);
-    }
+    
 }
 
 function disabledButton(submitButton, inactiveButtonClass) {
@@ -92,9 +92,9 @@ const config = {
     formSelector: ".modal__form",
     inputSelector: ".modal__input",
     submitButtonSelector: ".modal__button",
-    inactiveButtonClass: ".modal__button_disabled",
-    inputErrorClass: ".modal__input_type_error",
-    errorClass: ".modal__error_visible"
+    inactiveButtonClass: "modal__button_disabled",
+    inputErrorClass: "modal__input_type_error",
+    errorClass: "modal__error_visible"
 };
     
     

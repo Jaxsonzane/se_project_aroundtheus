@@ -71,6 +71,31 @@ function openPopup(modal) {
   modal.classList.add('modal_opened');
 }
 
+function closePopup(popup) {
+  popup.classList.remove('modal_opened');
+  document.removeEventListener('keydown', handleEscClose);
+  document.removeEventListener('click', handleOverlayClose);
+}
+
+function openPopup(modal) {
+  modal.classList.add('modal_opened');
+  document.addEventListener('keydown', handleEscClose);
+  document.addEventListener('click', handleOverlayClose);
+}
+
+function handleEscClose(e) {
+  if (e.key === 'Escape') {
+    const openedModal = document.querySelector('.modal_opened');
+    closePopup(openedModal);
+  }
+}
+
+function handleOverlayClose(e) {
+  if (e.target.classList.contains('modal')) {
+    closePopup(e.target);
+  }
+}
+
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector('.card__image');
