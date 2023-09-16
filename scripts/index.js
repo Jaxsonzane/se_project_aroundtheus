@@ -64,12 +64,7 @@ const cardLinkInput = profileAddForm.querySelector('.modal__input_type_link');
 /*                                  functions                                 */
 /* -------------------------------------------------------------------------- */
 
-function closePopup(popup) {
-  popup.classList.remove('modal_opened');
-}
-function openPopup(modal) {
-  modal.classList.add('modal_opened');
-}
+
 
 function closePopup(popup) {
   popup.classList.remove('modal_opened');
