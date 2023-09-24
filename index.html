@@ -31,14 +31,14 @@
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
-              class="profile__button-edit"
+              class="profile__edit-button"
               id="profile-edit-button"
               type="button"
             ></button>
-            <p class="profile__subtitle">Explorer</p>
+            <p class="profile__description">Explorer</p>
           </div>
           <button
-            class="profile__button-add"
+            class="profile__add-button"
             id="profile-add-button"
             type="button"
           ></button>
@@ -47,7 +47,7 @@
         <!--                              card section                               -->
         <!-- ----------------------------------------------------------------------- -->
         <section class="cards page__section">
-          <ul class="card"></ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
       <!-- ----------------------------------------------------------------------- -->
@@ -73,7 +73,7 @@
             type="text"
             name="title"
             class="modal__input modal__input_type_name"
-            id="modal-profile-title-input"
+            id="profile-title-input"
             placeholder="Name"
             minlength="2"
             maxlength="40"
@@ -87,7 +87,7 @@
             type="text"
             name="subtitle"
             class="modal__input modal__input_type_subtitle"
-            id="modal-profile-subtitle-input"
+            id="profile-description-input"
             placeholder="Description"
             minlength="2"
             maxlength="200"
@@ -100,7 +100,7 @@
       </div>
     </div>
     <!-- ------------------------add button----------------------------------------------- -->
-    <div class="modal" id="profile-add-modal">
+    <div class="modal" id="add-card-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
 
@@ -112,7 +112,7 @@
             type="text"
             name="title"
             class="modal__input modal__input_type_title"
-            id="profile-title-input"
+            id="form-input-title"
             placeholder="Title"
             minlength="1"
             maxlength="30"
@@ -126,7 +126,7 @@
             type="url"
             name="link"
             class="modal__input modal__input_type_link"
-            id="profile-subtitle-input"
+            id="form-input-url"
             placeholder="Image Link"
           />
           <span class="modal__error" id="profile-subtitle-input-error">Please enter a web address.</span>
@@ -136,7 +136,7 @@
       </div>
     </div>
     <!-- ------------------------preview modal----------------------------------------------- -->
-    <div class="modal" id="preview-modal-image">
+    <div class="modal" id="preview-image-modal">
       <div class="modal__container modal__container_preview">
         <button
           class="modal__close modal__close_preview"
