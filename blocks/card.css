@@ -83,6 +83,10 @@
   overflow: hidden;
 }
 
+.card {
+  margin-top: 0px;
+}
+
 @media screen and (max-width: 601px) {
   .card {
     margin-top: 0px;

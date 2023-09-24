@@ -1,12 +1,14 @@
-export default class Card {
-    constructor({ name, link }, cardSelector, handleImageClick) {
+  class Card {
+    constructor({name, link}, cardSelector, handleImageClick) {
       //cardSelector= #card-template
       this._name = name;
       this._link = link;
-      this._cardSelector = cardSelector; //template
+      
       this._handleImageClick = handleImageClick;
+      this._cardSelector = "#card-template"; 
     }
     _setEventListeners() {
+      // card like button
       this._cardElement
         .querySelector(".card__like-button")
         .addEventListener("click", () => {
@@ -18,8 +20,7 @@ export default class Card {
           link: this._link,
         });
       });
-  
-      //".card__trash-button"
+      // card delete button
       this._cardElement
         .querySelector(".card__trash-button")
         .addEventListener("click", () => {
@@ -34,24 +35,21 @@ export default class Card {
     }
     _handleRemoveCard() {
       this._cardElement.remove();
-      this._cardElement = null;
-    }
-    _getElement() {
-      return document
-        .querySelector(this._cardSelector)
-        .content.querySelector(".card")
-        .cloneNode(true);
     }
     getView() {
-      this._cardElement = this._getElement();
-      this.cardImageEl = this._cardElement.querySelector(".card__image");
-      this.cardTitleEl = this._cardElement.querySelector(".card__title");
-      this.cardImageEl.src = this._link;
-      this.cardImageEl.alt = `Photo of ${this._name}`;
-      this.cardTitleEl.textContent = this._name;
+      this._cardElement = document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
+      .cloneNode(true);
       //get the card view
+      this._cardElement.querySelector(".card__image")
+      .style.backgroundImage = `url(${this._link})`;
+      this._cardElement.querySelector(".card_title").textContent = this._name;
+      // set event listeners
       this._setEventListeners();
       // return card
       return this._cardElement;
     }
   }
+  
+  export default Card;
