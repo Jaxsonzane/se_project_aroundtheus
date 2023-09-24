@@ -8,6 +8,7 @@ class FormValidator {
         this._errorClass = config.errorClass;
 
         this._formEl = formEl;
+        
     }
 
     _showInputError(inputEl) {
@@ -25,7 +26,6 @@ class FormValidator {
     }
 
     _toggleButtonState(submitButton) {
-        let foundInvalid = false;
         if(!inputEl.validity.valid) {
             foundInvalid = true;
         }
@@ -69,4 +69,4 @@ class FormValidator {
     }
 }
 
-export default class FormValidator{}
+export default FormValidator;

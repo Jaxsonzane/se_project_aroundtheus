@@ -125,6 +125,8 @@
     font-size: 22px;
     max-width: 196px;
     line-height: normal;
+    text-align: center;
+    justify-content: center;
   }
 
   .profile__button-edit {
