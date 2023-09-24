@@ -5,7 +5,7 @@
       this._link = link;
       
       this._handleImageClick = handleImageClick;
-      this._cardSelector = "#card-template"; 
+      this._cardSelector = cardSelector; 
     }
     _setEventListeners() {
       // card like button
