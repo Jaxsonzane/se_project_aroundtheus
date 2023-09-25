@@ -11,36 +11,24 @@ export default class FormValidator {
       this._submitButton = formElement.querySelector(this._submitButtonSelector);
       this._element = formElement;
     }
-    _showInputError(inputElement) {
-      const errorElement = this._element.querySelector(
-        `#${inputElement.id}-error`
-      );
+    
+    _showInputError(inputElement, errorMessageEl) {
       inputElement.classList.add(this._inputErrorClass);
-      errorElement.textContent = inputElement.validationMessage;
-      errorElement.classList.add(this._errorClass);
+      errorMessageEl.textContent = inputElement.validationMessage;
+      errorMessageEl.classList.add(this._errorClass);
     }
-    _hideInputError(inputElement) {
-      const errorElement = this._element.querySelector(
-        `#${inputElement.id}-error`
-      );
+    _hideInputError(inputElement, formEls) {
+      const errorMessageEl = formEls.querySelector(`#${inputElement.id}-error`);
       inputElement.classList.remove(this._inputErrorClass);
-      errorElement.textContent = "";
-      errorElement.classList.remove(this._errorClass);
+      errorMessageEl.textContent = "";
     }
-    _checkInputValidity(inputElement) {
-      if (!inputElement.validity.valid) {
-        return this._showInputError(
-          inputElement,
-          document.querySelector(`#${inputElement.id}-error`)
-        );
-      }
-      this._hideInputError(inputElement);
-    }
+
     _hasInvalidInput() {
       return !this._inputElements.every(
         (inputElement) => inputElement.validity.valid
       );
     }
+
     toggleButtonState() {
       if (this._hasInvalidInput()) {
         this._submitButton.classList.add(this._inactiveButtonClass);
@@ -50,8 +38,21 @@ export default class FormValidator {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;
     }
+
+
+    _checkInputValidity(inputElement, formEls) {
+      if (!inputElement.validity.valid) {
+       this._showInputError(
+          inputElement,
+          document.querySelector(`#${inputElement.id}-error`)
+        );
+      } else {
+      this._hideInputError(inputElement, formEls);
+      }
+    }
+    
+    
     _setEventListeners() {
-      //data w in keyboard "keydown""keyup" etc
       this._inputElements.forEach((inputElement) => {
         inputElement.addEventListener("input", () => {
           this._checkInputValidity(inputElement, this._element);
