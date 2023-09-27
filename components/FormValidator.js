@@ -18,8 +18,12 @@ export default class FormValidator {
 
 	_showInputError(inputElement, errorMessageEl) {
 		inputElement.classList.add(this._inputErrorClass);
-		errorMessageEl.textContent = inputElement.validationMessage;
-		errorMessageEl.classList.add(this._errorClass);
+		if (errorMessageEl) {
+			errorMessageEl.textContent = inputElement.validationMessage;
+			errorMessageEl.classList.add(this._errorClass);
+		} else {
+			console.warn(`Error element for ${inputElement.id} not found.`);
+		}
 	}
   
 	_hideInputError(inputElement) {
@@ -27,7 +31,11 @@ export default class FormValidator {
 			`#${inputElement.id}-error`
 		);
 		inputElement.classList.remove(this._inputErrorClass);
+		if (errorMessageEl) {
 		errorMessageEl.textContent = '';
+		} else {
+			console.warn(`Error element for ${inputElement.id} not found.`);
+		}
 	}
 
 	_hasInvalidInput() {

@@ -191,7 +191,7 @@ const config = {
 	inactiveButtonClass: 'modal__button_disabled',
 	inputErrorClass: 'modal__input_type_error',
 	errorClass: 'popup__error_visible',
-	errorMessageEl: 'modal__error',
+	errorMessageEl: '.modal__error',
 };
 
 const addCardValidator = new FormValidator(config, addFormElement);
