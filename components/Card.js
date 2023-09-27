@@ -28,8 +28,8 @@ class Card {
 				this._handleRemoveCard();
 			});
 
-		this._cardElement
-    .addEventListener('click', () => {
+		this._cardElement.querySelector('.card__image')
+    		.addEventListener('click', () => {
 			this._handleImageClick({
 				name: this._name,
 				link: this._link,
@@ -40,7 +40,7 @@ class Card {
 	_handleLikeIcon() {
 		this._cardElement
 			.querySelector('.card__button-like')
-			.classList.toggle('.card__button-like_active');
+			.classList.toggle('card__button-like_active');
 	}
 	_handleRemoveCard() {
 		this._cardElement.remove();

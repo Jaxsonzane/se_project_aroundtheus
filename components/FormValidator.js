@@ -5,14 +5,16 @@ export default class FormValidator {
 		this._inactiveButtonClass = config.inactiveButtonClass;
 		this._inputErrorClass = config.inputErrorClass;
 		this._errorClass = config.errorClass;
+		this._errorMessageEl = config.errorMessageEl;
 		this._formElement = formElement;
 		this._inputElements = [
-			...this._formElement.querySelectorAll(this._inputSelector),
+			...this._formElement.querySelectorAll(this._inputSelector)
 		];
 		this._submitButton = this._formElement.querySelector(
 			this._submitButtonSelector
 		);
 	}
+	
 
 	_showInputError(inputElement, errorMessageEl) {
 		inputElement.classList.add(this._inputErrorClass);

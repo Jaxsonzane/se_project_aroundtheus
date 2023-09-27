@@ -28,7 +28,7 @@ const initialCards = [
 	},
 ];
 
-const card = new Card(initialCards, '#card-template', handleImageClick);
+
 
 // edit profile
 const profileEditButton = document.querySelector('#profile-edit-button');
@@ -61,6 +61,8 @@ const cardTitleInput = addCardFormElement.querySelector('#form-input-title');
 const cardListEl = document.querySelector('.cards__list');
 const cardTemplate =
 	document.querySelector('#card-template').content.firstElementChild;
+
+	
 
 function openPopup(modal) {
 	modal.classList.add('modal_opened');
@@ -121,9 +123,10 @@ function handleImageClick(data) {
 // return cardElement;
 
 function renderCard(cardData, cardListEl) {
-	const cardElement = getCardElement(cardData);
-	cardListEl.prepend(cardElement);
+	const card = new Card(cardData, '#card-template', handleImageClick);
+	cardListEl.prepend(card.getView());
 }
+
 
 function handlerProfileEditSubmit(e) {
 	e.preventDefault();
@@ -176,22 +179,23 @@ addCardModalCloseButton.addEventListener('click', () =>
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
-const formElement = document.querySelector(
-	'#add-card-form',
-	'#edit-profile-form'
+const addFormElement = document.querySelector(
+	'#add-card-form'
 );
+const editFormElement = document.querySelector('#edit-card-form');
 
 const config = {
 	formSelector: '.modal__form',
-	inputSelector: '.form__input',
+	inputSelector: '.modal__input',
 	submitButtonSelector: '.modal__button',
 	inactiveButtonClass: 'modal__button_disabled',
 	inputErrorClass: 'modal__input_type_error',
 	errorClass: 'popup__error_visible',
+	errorMessageEl: 'modal__error',
 };
 
-const addCardValidator = new FormValidator(config, formElement);
+const addCardValidator = new FormValidator(config, addFormElement);
 addCardValidator.enableValidation();
 
-const addEditValidator = new FormValidator(config, formElement);
+const addEditValidator = new FormValidator(config, editFormElement);
 addEditValidator.enableValidation();
