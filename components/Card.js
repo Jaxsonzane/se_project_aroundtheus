@@ -15,7 +15,7 @@ class Card {
 	}
 
 	_setEventListeners() {
-    // card like button
+		// card like button
 		this._cardElement
 			.querySelector('.card__button-like')
 			.addEventListener('click', () => {
@@ -28,13 +28,14 @@ class Card {
 				this._handleRemoveCard();
 			});
 
-		this._cardElement.querySelector('.card__image')
-    		.addEventListener('click', () => {
-			this._handleImageClick({
-				name: this._name,
-				link: this._link,
+		this._cardElement
+			.querySelector('.card__image')
+			.addEventListener('click', () => {
+				this._handleImageClick({
+					name: this._name,
+					link: this._link,
+				});
 			});
-		});
 	}
 
 	_handleLikeIcon() {
@@ -44,7 +45,7 @@ class Card {
 	}
 	_handleRemoveCard() {
 		this._cardElement.remove();
-    this._cardElement = null;
+		this._cardElement = null;
 	}
 
 	getView() {
@@ -52,7 +53,7 @@ class Card {
 			.querySelector(this._cardSelector)
 			.content.querySelector('.card__list-item')
 			.cloneNode(true);
-		
+
 		const cardImage = this._cardElement.querySelector('.card__image');
 		cardImage.src = this._link;
 		cardImage.alt = `Image of ${this._name}`;

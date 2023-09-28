@@ -8,15 +8,17 @@ export default class FormValidator {
 		this._errorMessageEl = config.errorMessageEl;
 		this._formElement = formElement;
 		this._inputElements = [
-			...this._formElement.querySelectorAll(this._inputSelector)
+			...this._formElement.querySelectorAll(this._inputSelector),
 		];
 		this._submitButton = this._formElement.querySelector(
 			this._submitButtonSelector
 		);
 	}
-	
 
-	_showInputError(inputElement, errorMessageEl) {
+	_showInputError(inputElement) {
+		const errorMessageEl = this._formElement.querySelector(
+			`#${inputElement.id}-error`
+		);
 		inputElement.classList.add(this._inputErrorClass);
 		if (errorMessageEl) {
 			errorMessageEl.textContent = inputElement.validationMessage;
@@ -25,14 +27,14 @@ export default class FormValidator {
 			console.warn(`Error element for ${inputElement.id} not found.`);
 		}
 	}
-  
+
 	_hideInputError(inputElement) {
 		const errorMessageEl = this._formElement.querySelector(
 			`#${inputElement.id}-error`
 		);
 		inputElement.classList.remove(this._inputErrorClass);
 		if (errorMessageEl) {
-		errorMessageEl.textContent = '';
+			errorMessageEl.textContent = '';
 		} else {
 			console.warn(`Error element for ${inputElement.id} not found.`);
 		}
@@ -56,10 +58,7 @@ export default class FormValidator {
 
 	_checkInputValidity(inputElement, formEls) {
 		if (!inputElement.validity.valid) {
-			this._showInputError(
-				inputElement,
-				document.querySelector(`#${inputElement.id}-error`)
-			);
+			this._showInputError(inputElement);
 		} else {
 			this._hideInputError(inputElement, formEls);
 		}
@@ -75,7 +74,6 @@ export default class FormValidator {
 	}
 
 	enableValidation() {
-		//plays roll of init method(public)
 		this._formElement.addEventListener('submit', (e) => {
 			e.preventDefault();
 		});

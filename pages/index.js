@@ -28,8 +28,6 @@ const initialCards = [
 	},
 ];
 
-
-
 // edit profile
 const profileEditButton = document.querySelector('#profile-edit-button');
 const profileEditModal = document.querySelector('#profile-edit-modal');
@@ -61,8 +59,6 @@ const cardTitleInput = addCardFormElement.querySelector('#form-input-title');
 const cardListEl = document.querySelector('.cards__list');
 const cardTemplate =
 	document.querySelector('#card-template').content.firstElementChild;
-
-	
 
 function openPopup(modal) {
 	modal.classList.add('modal_opened');
@@ -127,7 +123,6 @@ function renderCard(cardData, cardListEl) {
 	cardListEl.prepend(card.getView());
 }
 
-
 function handlerProfileEditSubmit(e) {
 	e.preventDefault();
 	profileTitle.textContent = profileTitleInput.value;
@@ -179,9 +174,7 @@ addCardModalCloseButton.addEventListener('click', () =>
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 
-const addFormElement = document.querySelector(
-	'#add-card-form'
-);
+const addFormElement = document.querySelector('#add-card-form');
 const editFormElement = document.querySelector('#edit-card-form');
 
 const config = {
@@ -190,7 +183,7 @@ const config = {
 	submitButtonSelector: '.modal__button',
 	inactiveButtonClass: 'modal__button_disabled',
 	inputErrorClass: 'modal__input_type_error',
-	errorClass: 'popup__error_visible',
+	errorClass: 'modal__error_visible',
 	errorMessageEl: '.modal__error',
 };
 
