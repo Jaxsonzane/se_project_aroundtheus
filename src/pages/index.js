@@ -76,7 +76,7 @@ const cardTemplate =
 	  );
 	  editProfilePopup.setEventListeners();
 	  
-	  const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardSubmit);
+	  const addCardPopup = new PopupWithForm("#add-card-modal", handleAddCardFormSubmit);
 	  addCardPopup.setEventListeners();
 	  
 	  const popupImageModal = new PopupWithImage("#preview-image-modal");
@@ -90,16 +90,6 @@ const cardTemplate =
 		".cards__list"
 	  );
 	  cardSection.renderItems();
-
-
-
-
-
-
-
-
-
-
 
 // function openPopup(modal) {
 // 	modal.classList.add('modal_opened');
