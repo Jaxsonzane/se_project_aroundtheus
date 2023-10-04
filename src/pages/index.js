@@ -114,17 +114,14 @@ const cardTemplate =
 // 	}
 // }
 
-function handleImageClick(data) {
-	previewImage.src = data.link;
-	previewImage.alt = `Photo of ${data.name}`;
-	previewImageModalTitle.textContent = data.name;
-
-	popupImageModal.open();
+function handleCardClick(name, link) {
+	popupImageModal.open(name, link); 
 }
 
 function renderCard(cardData, cardListEl) {
-	const card = new Card(cardData, '#card-template', handleImageClick);
+	const card = new Card(cardData, '#card-template', handleCardClick);
 	cardListEl.prepend(card.getView());
+	
 }
 
 function handleProfileEditSubmit(value) {
