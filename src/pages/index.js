@@ -37,14 +37,14 @@ const initialCards = [
 const profileEditButton = document.querySelector('#profile-edit-button');
 const profileEditModal = document.querySelector('#profile-edit-modal');
 const profileEditCloseButton = profileEditModal.querySelector('.modal__close');
-const profileTitle = document.querySelector('.profile__title');
-const profileDescription = document.querySelector('.profile__description');
-const profileEditForm = profileEditModal.querySelector('.modal__form');
+// const profileTitle = document.querySelector('.profile__title');
+// const profileDescription = document.querySelector('.profile__description');
+// const profileEditForm = profileEditModal.querySelector('.modal__form');
 
 // preview
 const previewImageModal = document.querySelector('#preview-image-modal');
-const previewImage = previewImageModal.querySelector('.modal__image');
-const previewImageModalTitle = previewImageModal.querySelector('.modal__title');
+// const previewImage = previewImageModal.querySelector('.modal__image');
+// const previewImageModalTitle = previewImageModal.querySelector('.modal__title');
 const previewImageModalCloseButton =
 	previewImageModal.querySelector('.modal__close');
 
@@ -62,8 +62,6 @@ const cardTitleInput = addCardFormElement.querySelector('#form-input-title');
 
 // template
 const cardListEl = document.querySelector('.cards__list');
-const cardTemplate =
-	document.querySelector('#card-template').content.firstElementChild;
 
 const userInfo = new UserInfo({
 	nameSelector: '.profile__title',
@@ -137,9 +135,6 @@ function handleAddCardFormSubmit(value) {
 	renderCard({ name, link }, cardListEl);
 	addCardFormElement.reset();
 	addCardPopup.close();
-	
-
-	addCardValidator.toggleButtonState();
 }
 
 // Event Listeners
