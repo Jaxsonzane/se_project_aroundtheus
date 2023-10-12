@@ -6,6 +6,11 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import '../pages/index.css';
 
+const api = new Api({
+	baseUrl: "https://around-api.en.tripleten-services.com/v1",
+	authToken: "58feb0fec-b9f5-4bc3-b108-bb68825ef5654",
+  });
+
 const initialCards = [
 	{
 		name: 'Yosemite Valley',
