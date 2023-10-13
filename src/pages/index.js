@@ -66,6 +66,9 @@ const cardTitleInput = addCardFormElement.querySelector('#form-input-title');
 // template
 const cardListEl = document.querySelector('.cards__list');
 
+const addFormElement = document.querySelector('#add-card-form');
+const editFormElement = document.querySelector('#edit-card-form');
+
 const userInfo = new UserInfo({
 	nameSelector: '.profile__title',
 	jobSelector: '.profile__description',
@@ -111,15 +114,92 @@ api.getAllData()
 // );
 // cardSection.renderItems();
 
-function renderCard(cardData) {
-	const card = new Card(
-		cardData, 
-		'#card-template', 
-		handleImageClick, 
-		handleLikeClick,
-		handleTrashClick);
-	const cardElement = card.getView();
-	cardSection.addItem(cardElement);
+// function createCard(cardData) {
+// 	const card = new Card(
+// 		cardData, 
+// 		'#card-template', 
+// 		handleImageClick, 
+// 		handleLikeClick,
+// 		handleTrashClick);
+// 	const cardElement = card.getView();
+// 	cardSection.addItem(cardElement);
+// }
+
+// function handleImageClick(name, link) {
+// 	popupImageModal.open(name, link);
+// }
+function createCard(cardData) {
+	const card = new Card({
+	  data: cardData,
+	  handleImageClick: () => {
+		popupImageModal.open(cardData.name, cardData.link);
+	  },
+	  handleLikeClick: () => {
+		const isLiked = card.isLiked();
+		api.changeLikeCardStatus(cardData._id, !isLiked)
+		  .then((updatedCardData) => {
+			card.updateLikes(updatedCardData.likes);
+		  })
+		  .catch((err) => {
+			console.log(err);
+		  });
+	  },
+	  handleTrashClick: () => {
+		const cardId = cardData._id;
+		const confirmDeletePopup = new PopupWithConfirm({
+		  popupSelector: '.popup_type_confirm-delete',
+		  formSubmitHandler: () => {
+			api.deleteCard(cardId)
+			  .then(() => {
+				card.deleteCard();
+				confirmDeletePopup.close();
+			  })
+			  .catch((err) => {
+				console.log(err);
+			  });
+		  }
+		});
+		confirmDeletePopup.open();
+	  }
+	}, '#card-template');
+	return card.generateCard();
+}
+
+function handleProfileEditSubmit(value) {
+	editProfilePopup.setLoading(true);
+	api.updateEditProfile(value)
+		.then((userData) => {
+			userInfo.setUserInfo(userData);
+			editProfilePopup.close();
+		})
+		.catch((err) => {
+			console.log(err);
+		})
+		.finally(() => {
+			editProfilePopup.setLoading(false);
+		});
+}
+
+function handleAddCardFormSubmit(value) {
+	addCardPopup.setLoading(true);
+	api.addCard(value)
+		.then((cardData) => {
+			const cardElement = createCard(cardData);
+			cardSection.addItem(cardElement);
+			addCardPopup.close();
+		})
+		.catch((err) => {
+			console.log(err);
+		})
+		.finally(() => {
+			addCardPopup.setLoading(false);
+		});
+
+	const name = value.title
+	const link = value.link
+	renderCard({ name, link }, cardListEl);
+	addCardFormElement.reset();
+	addCardPopup.close();
 }
 
 function handleOverlayClose(e) {
@@ -128,24 +208,7 @@ function handleOverlayClose(e) {
 	}
 }
 
-function handleImageClick(name, link) {
-	popupImageModal.open(name, link);
-}
-
-function handleProfileEditSubmit(value) {
-	userInfo.setUserInfo(value);
-	editProfilePopup.close();
-}
-function handleAddCardFormSubmit(value) {
-	const name = value.title
-	const link = value.link
-	renderCard({ name, link }, cardListEl);
-	addCardFormElement.reset();
-	addCardPopup.close();
-}
-
 // Event Listeners
-
 profileEditButton.addEventListener('click', () => {
 	const user = userInfo.getUserInfo();
 	profileTitleInput.value = user.name;
@@ -173,8 +236,19 @@ addNewCardButton.addEventListener('click', () => {
 });
 addCardModalCloseButton.addEventListener('click', () => addCardPopup.close());
 
-const addFormElement = document.querySelector('#add-card-form');
-const editFormElement = document.querySelector('#edit-card-form');
+editFormElement.addEventListener('submit', (event) => {
+	event.preventDefault();
+	editProfileValidator.setLoading(true);
+	editProfileValidator.disableSubmitButton();
+	handleProfileEditSubmit(new FormData(event.target));
+  });
+  
+  addFormElement.addEventListener('submit', (event) => {
+	event.preventDefault();
+	addCardValidator.setLoading(true);
+	addCardValidator.disableSubmitButton();
+	handleAddCardFormSubmit(new FormData(event.target));
+  });
 
 const config = {
 	formSelector: '.modal__form',

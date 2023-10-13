@@ -11,6 +11,10 @@ export default class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
+  getAllData() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+  }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: {
@@ -23,48 +27,55 @@ export default class Api {
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
       headers: {
-        authorization: this._authToken
+        authorization: this._headers
       }
     })
     .then(res => this._checkResponse(res));
   }
 
-  createCard({ name, link }) {
+  // add new card
+  addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      body: JSON.stringify({ name, link }),
       headers: this._headers,
-    }).then(this._checkResponse);
+      body: JSON.stringify({ name, link }),
+    })
+    .then(this._checkResponse);
   }
 
-
+  // edit user info
   updateEditProfile({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      body: JSON.stringify({ name, about }),
       headers: this._headers,
-      }).then(this._checkResponse);
+      body: JSON.stringify({ name, about }),
+      })
+      .then(this._checkResponse);
     }
 
+  // delete card
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
       headers: this._headers,
-      }).then(this._checkResponse);
+      })
+      .then(this._checkResponse);
     }
 
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
       headers: this._headers,
-      }).then(this._checkResponse);
+      })
+      .then(this._checkResponse);
     }
 
   unlikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
       headers: this._headers,
-      }).then(this._checkResponse);
+      })
+      .then(this._checkResponse);
     }
     
   updateAvatar(updatedAvatar) {
@@ -72,10 +83,7 @@ export default class Api {
       method: "PATCH",
       body: JSON.stringify({ avatar: updatedAvatar }),
       headers: this._headers,
-      }).then(this._checkResponse);
+      })
+      .then(this._checkResponse);
     }
-
-  getAllData() {
-    return Promise.all([this._getUserInfo(), this._getInitialCards()]);
-  }
 }

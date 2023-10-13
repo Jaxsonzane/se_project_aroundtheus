@@ -13,14 +13,17 @@ class Card {
 		this._handleTrashClick = handleTrashClick;
 		this._handleLikeClick = handleLikeClick;
 	}
-
+	// card template
 	_getTemplate() {
 		const cardElement = document
 			.querySelector(this._cardSelector)
-			.content.firstElementChild.cloneNode(true);
+			.content
+			.firstElementChild
+			.cloneNode(true);
 		return cardElement;
 	}
 
+	// event listeners
 	_setEventListeners() {
 		// card like button
 		this._cardElement
@@ -58,7 +61,8 @@ class Card {
 	getView() {
 		this._cardElement = document
 			.querySelector(this._cardSelector)
-			.content.querySelector('.card__list-item')
+			.content
+			.querySelector('.card__list-item')
 			.cloneNode(true);
 
 		const cardImage = this._cardElement.querySelector('.card__image');
