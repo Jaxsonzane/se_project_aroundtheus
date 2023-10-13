@@ -1,10 +1,17 @@
 class Card {
-	constructor({ name, link }, cardSelector, handleImageClick) {
+	constructor({ name, link, _id, isLiked }, 
+		cardSelector, 
+		handleImageClick,
+		handleTrashClick,
+		handleLikeClick) {
 		this._name = name;
 		this._link = link;
-
 		this._handleImageClick = handleImageClick;
 		this._cardSelector = cardSelector;
+		this._id = _id;
+		this._isLiked = isLiked;
+		this._handleTrashClick = handleTrashClick;
+		this._handleLikeClick = handleLikeClick;
 	}
 
 	_getTemplate() {

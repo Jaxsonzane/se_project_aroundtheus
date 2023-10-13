@@ -4,13 +4,16 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
 import '../pages/index.css';
 
 const api = new Api({
 	baseUrl: "https://around-api.en.tripleten-services.com/v1",
-	authToken: "58feb0fec-b9f5-4bc3-b108-bb68825ef5654",
-  });
-
+	headers: {
+		authorization: "58feb0fec-b9f5-4bc3-b108-bb68825ef5654",
+		"Content-Type": "application/json",
+	}
+});
 const initialCards = [
 	{
 		name: 'Yosemite Valley',
@@ -42,14 +45,9 @@ const initialCards = [
 const profileEditButton = document.querySelector('#profile-edit-button');
 const profileEditModal = document.querySelector('#profile-edit-modal');
 const profileEditCloseButton = profileEditModal.querySelector('.modal__close');
-// const profileTitle = document.querySelector('.profile__title');
-// const profileDescription = document.querySelector('.profile__description');
-// const profileEditForm = profileEditModal.querySelector('.modal__form');
 
 // preview
 const previewImageModal = document.querySelector('#preview-image-modal');
-// const previewImage = previewImageModal.querySelector('.modal__image');
-// const previewImageModalTitle = previewImageModal.querySelector('.modal__title');
 const previewImageModalCloseButton =
 	previewImageModal.querySelector('.modal__close');
 
@@ -88,34 +86,38 @@ addCardPopup.setEventListeners();
 const popupImageModal = new PopupWithImage('#preview-image-modal');
 popupImageModal.setEventListeners();
 
-const cardSection = new Section(
-	{
+api.getAllData()
+.then(([userData, initialCards]) => {
+	userInfo.setUserInfo(userData);
+	const cardsList = new Section({
 		items: initialCards,
-		renderer: renderCard,
-	},
-	'.cards__list'
-);
-cardSection.renderItems();
+		renderer: (cardData) => {
+			const cardElement = createCard(cardData);
+			cardsList.addItem(cardElement);
+			}
+		}, '.cards__list');
+	cardsList.renderItems();
+})
+.catch((err) => {
+	console.log(err);
+});		
 
-// function openPopup(modal) {
-// 	modal.classList.add('modal_opened');
-// 	document.addEventListener('keydown', escPopup);
-// }
-
-// function closePopup(modal) {
-// 	modal.classList.remove('modal_opened');
-// 	document.removeEventListener('keydown', escPopup);
-// }
-
-// function escPopup(e) {
-// 	if (e.key === 'Escape') {
-// 		const modal = document.querySelector('.modal_opened');
-// 		if (modal) closePopup(modal);
-// 	}
-// }
+// const cardSection = new Section(
+// 	{
+// 		items: initialCards,
+// 		renderer: renderCard,
+// 	},
+// 	'.cards__list'
+// );
+// cardSection.renderItems();
 
 function renderCard(cardData) {
-	const card = new Card(cardData, '#card-template', handleImageClick);
+	const card = new Card(
+		cardData, 
+		'#card-template', 
+		handleImageClick, 
+		handleLikeClick,
+		handleTrashClick);
 	const cardElement = card.getView();
 	cardSection.addItem(cardElement);
 }
