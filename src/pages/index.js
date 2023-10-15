@@ -7,13 +7,7 @@ import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
 import '../pages/index.css';
 
-const api = new Api({
-	baseUrl: "https://around-api.en.tripleten-services.com/v1",
-	headers: {
-		authorization: "58feb0fec-b9f5-4bc3-b108-bb68825ef5654",
-		"Content-Type": "application/json",
-	}
-});
+
 const initialCards = [
 	{
 		name: 'Yosemite Valley',
@@ -69,14 +63,12 @@ const cardListEl = document.querySelector('.cards__list');
 const addFormElement = document.querySelector('#add-card-form');
 const editFormElement = document.querySelector('#edit-card-form');
 
-const userInfo = new UserInfo({
-	nameSelector: '.profile__title',
-	jobSelector: '.profile__description',
-});
+
 
 const editProfilePopup = new PopupWithForm(
 	'#profile-edit-modal',
-	handleProfileEditSubmit
+	handleProfileEditSubmit,
+	handleAvatarFormSubmit
 );
 editProfilePopup.setEventListeners();
 
@@ -89,21 +81,43 @@ addCardPopup.setEventListeners();
 const popupImageModal = new PopupWithImage('#preview-image-modal');
 popupImageModal.setEventListeners();
 
+const api = new Api({
+	baseUrl: "https://around-api.en.tripleten-services.com/v1",
+	headers: {
+		authorization: "c11a15fc-f59e-4aaf-ae30-dd9265e1fb3a",
+		"Content-Type": "application/json",
+	}
+});
+
 api.getAllData()
 .then(([userData, initialCards]) => {
 	userInfo.setUserInfo(userData);
 	const cardsList = new Section({
 		items: initialCards,
 		renderer: (cardData) => {
-			const cardElement = createCard(cardData);
-			cardsList.addItem(cardElement);
-			}
-		}, '.cards__list');
-	cardsList.renderItems();
+			const card = new Card({
+				data: cardData,
+				handleImageClick: handleImageClick,
+				handleLikeClick: handleLikeClick,
+				handleTrashClick: handleTrashClick,
+			});
+			const cardElement = card.generateCard();
+			cardsList.addCard(cardElement);
+		}, 
+	}, '.cards__list');
+	cardsList.render();
 })
 .catch((err) => {
 	console.log(err);
 });		
+
+const userInfo = new UserInfo({
+	nameSelector: '.profile__title',
+	jobSelector: '.profile__description',
+	userAvatar: '.profile__image',
+});
+
+
 
 // const cardSection = new Section(
 // 	{
@@ -125,9 +139,10 @@ api.getAllData()
 // 	cardSection.addItem(cardElement);
 // }
 
-// function handleImageClick(name, link) {
-// 	popupImageModal.open(name, link);
-// }
+function handleImageClick(name, link) {
+	popupImageModal.open(name, link);
+}
+
 function createCard(cardData) {
 	const card = new Card({
 	  data: cardData,
@@ -166,7 +181,7 @@ function createCard(cardData) {
 }
 
 function handleProfileEditSubmit(value) {
-	editProfilePopup.setLoading(true);
+	editProfilePopup.submitButtonState(true, "Saving...");
 	api.updateEditProfile(value)
 		.then((userData) => {
 			userInfo.setUserInfo(userData);
@@ -176,12 +191,27 @@ function handleProfileEditSubmit(value) {
 			console.log(err);
 		})
 		.finally(() => {
-			editProfilePopup.setLoading(false);
+			editProfilePopup.submitButtonState(false);
 		});
 }
 
+function handleAvatarFormSubmit(value) {
+	avatarPopup.submitButtonState(true, "Saving...");
+	api.updateUserAvatar(value)
+	  .then((userData) => {
+		userInfo.setUserInfo(userData);
+		avatarPopup.close();
+	  })
+	  .catch((err) => {
+		console.log(err);
+	  })
+	  .finally(() => {
+		avatarPopup.submitButtonState(false);
+	  });
+  }
+
 function handleAddCardFormSubmit(value) {
-	addCardPopup.setLoading(true);
+	addCardPopup.submitButtonState(true, "Saving...");
 	api.addCard(value)
 		.then((cardData) => {
 			const cardElement = createCard(cardData);
@@ -192,14 +222,10 @@ function handleAddCardFormSubmit(value) {
 			console.log(err);
 		})
 		.finally(() => {
-			addCardPopup.setLoading(false);
+			addCardPopup.submitButtonState(false);
 		});
 
-	const name = value.title
-	const link = value.link
-	renderCard({ name, link }, cardListEl);
-	addCardFormElement.reset();
-	addCardPopup.close();
+	
 }
 
 function handleOverlayClose(e) {
@@ -236,19 +262,19 @@ addNewCardButton.addEventListener('click', () => {
 });
 addCardModalCloseButton.addEventListener('click', () => addCardPopup.close());
 
-editFormElement.addEventListener('submit', (event) => {
-	event.preventDefault();
-	editProfileValidator.setLoading(true);
-	editProfileValidator.disableSubmitButton();
-	handleProfileEditSubmit(new FormData(event.target));
-  });
+// editFormElement.addEventListener('submit', (event) => {
+// 	event.preventDefault();
+// 	addEditValidator.submitButtonState(true, "Saving...");
+// 	addEditValidator.disableSubmitButton();
+// 	handleProfileEditSubmit(new FormData(event.target));
+//   });
   
-  addFormElement.addEventListener('submit', (event) => {
-	event.preventDefault();
-	addCardValidator.setLoading(true);
-	addCardValidator.disableSubmitButton();
-	handleAddCardFormSubmit(new FormData(event.target));
-  });
+//   addFormElement.addEventListener('submit', (event) => {
+// 	event.preventDefault();
+// 	addCardValidator.submitButtonState(true, "Saving...");
+// 	addCardValidator.disableSubmitButton();
+// 	handleAddCardFormSubmit(new FormData(event.target));
+//   });
 
 const config = {
 	formSelector: '.modal__form',

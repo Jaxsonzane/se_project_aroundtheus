@@ -17,18 +17,14 @@ export default class Api {
 
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
-      headers: {
-        authorization: this._headers
-      }
+      headers: this._headers
     })
     .then(res => this._checkResponse(res));
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: {
-        authorization: this._headers
-      }
+      headers: this._headers
     })
     .then(res => this._checkResponse(res));
   }
