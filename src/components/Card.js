@@ -2,6 +2,7 @@ class Card {
 	constructor({ data, _id, isLiked }, 
 		cardSelector, 
 		handleImageClick,
+		handleRemoveLike,
 		handleTrashClick,
 		handleLikeClick) {
 		this._name = data.name;
@@ -10,6 +11,7 @@ class Card {
 		this._cardSelector = cardSelector;
 		this._id = _id;
 		this._isLiked = isLiked;
+		this._handleRemoveLike = handleRemoveLike;
 		this._handleTrashClick = handleTrashClick;
 		this._handleLikeClick = handleLikeClick;
 	}
@@ -77,6 +79,8 @@ class Card {
 		this._cardElement.remove();
 		this._cardElement = null;
 	}
+
+	_
 
 	generateCard() {
 		this._cardElement = this._getTemplate();

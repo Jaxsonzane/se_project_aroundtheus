@@ -24,17 +24,19 @@ export default class Api {
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers
+      headers: this._headers,
     })
     .then(res => this._checkResponse(res));
   }
 
   // add new card
-  addCard({ name, link }) {
+  addCard({ data }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify({ name, link }),
+      body: JSON.stringify({ 
+        name: data.name, 
+        name: data.link, }),
     })
     .then(this._checkResponse);
   }
@@ -74,10 +76,11 @@ export default class Api {
       .then(this._checkResponse);
     }
     
-  updateAvatar(updatedAvatar) {
+  updateAvatar(data) {
     return fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
-      body: JSON.stringify({ avatar: updatedAvatar }),
+      body: JSON.stringify({ 
+        avatar: data.link}),
       headers: this._headers,
       })
       .then(this._checkResponse);
