@@ -90,14 +90,25 @@ const api = new Api({
 	}
 });
 
-api
-.getInitialCards()
-.then((data) => {
+let cardSection;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([data, initialCards]) => {
 	console.log(data);
-})
-.catch((err) => {
-	console.log(err);
-});
+    userInfo.setUserInfo(data);
+	profilePicture.src = data.avatar;
+    cardSection = new Section(
+      {
+        items: initialCards,
+        renderer: createCard,
+      },
+      '.cards__list'
+    );
+    cardSection.setItems(initialCards);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 //  
 // PopupWithForms
@@ -126,8 +137,25 @@ avatarPopup.setEventListeners();
 // Confirm Delete Popup
 //
 
-const confirmDelete = new PopupConfirmation("#delete-card-modal", deleteHandler);
-confirmDelete.setEventListeners();
+const confirmDeletePopup = new PopupConfirmation({
+	popupSelector: "#delete-card-modal", 
+	});
+confirmDeletePopup.setEventListeners();
+
+function handleTrashClick(cardElement, cardId, card) {
+	console.log(cardId);
+	confirmDeletePopup.open();
+	confirmDeletePopup.getCardInfo(cardElement, cardId, card);
+	confirmDeletePopup.submitButtonState(true, "Yes");
+	api
+	  .deleteCard(cardId)
+	  .then(() => {
+		confirmDeletePopup.deleteConfirmed(cardElement, cardId, card);
+	  })
+	  .catch((err) => {
+		console.error(err);
+	  })
+  }
 
 //  
 // Image Preview Popup
@@ -148,6 +176,9 @@ addCardValidator.enableValidation();
 
 const updateAvatarValidator = new FormValidator(config, avatarFormElement);
 updateAvatarValidator.enableValidation();
+
+// const confirmDeleteValidator = new PopupConfirmation(config, confirmDeletePopup);
+// confirmDeleteValidator.enableValidation();
 
 //  
 // User Info
@@ -230,6 +261,9 @@ function handleAvatarFormSubmit(data) {
 }
 
 function handleLikeClick(card, cardID) {
+	if (card.isLiked()) {
+		handleLikeClick(card, cardID);
+	}
 	api
 	  .addLike(cardID)
 	  .then((data) => {
@@ -242,6 +276,9 @@ function handleLikeClick(card, cardID) {
   }
   
   function handleRemoveLike(card, cardID) {
+	if (card.isLiked()) {
+		handleRemoveLike(card, cardID);
+	}
 	api
 	  .removeLike(cardID)
 	  .then((data) => {
@@ -253,29 +290,6 @@ function handleLikeClick(card, cardID) {
 	  });
   }
   
-  function handleTrashClick(cardElement, cardId, card) {
-	console.log(cardId);
-	confirmDelete.open();
-	confirmDelete.getCardInfo(cardElement, cardId, card);
-  }
-  
-  function deleteHandler(cardElement, cardId, card) {
-	console.log(card);
-	confirmDelete.submitButtonSelector(true, "Deleting...");
-	api
-	  .deleteCard(cardId)
-	  .then(() => {
-		cardElement.remove();
-		cardElement = null;
-	  })
-	  .then(() => {
-		confirmDelete.close();
-	  })
-	  .catch((err) => console.error(err))
-	  .finally(() => {
-		confirmDelete.renderLoading(false);
-	  });
-  }
 
   function handleOverlayClose(e) {
 	if (e.target.classList.contains('modal_opened')) {
@@ -300,25 +314,7 @@ addNewCardButton.addEventListener('click', () => {
 	addCardPopup.open();
 });
 
-let cardSection;
 
-Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([data, initialCards]) => {
-	console.log(data);
-    userInfo.setUserInfo(data);
-	profilePicture.src = data.avatar;
-    cardSection = new Section(
-      {
-        items: initialCards,
-        renderer: createCard,
-      },
-      '.cards__list'
-    );
-    cardSection.setItems(initialCards);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 
 

@@ -16,7 +16,7 @@ export default class Section {
       this.render();
     }
   
-    addCard(element) {
+    addItem(element) {
       this._container.prepend(element);
     }
 
