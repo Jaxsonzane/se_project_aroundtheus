@@ -36,7 +36,7 @@ export default class Api {
       headers: this._headers,
       body: JSON.stringify({ 
         name: data.name, 
-        name: data.link, }),
+        link: data.link, }),
     })
     .then(this._checkResponse);
   }

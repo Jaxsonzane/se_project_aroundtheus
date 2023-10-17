@@ -36,6 +36,16 @@ const initialCards = [
 	},
 ];
 
+const config = {
+	formSelector: '.modal__form',
+	inputSelector: '.modal__input',
+	submitButtonSelector: '.modal__button',
+	inactiveButtonClass: 'modal__button_disabled',
+	inputErrorClass: 'modal__input_type_error',
+	errorClass: 'modal__error_visible',
+	errorMessageEl: '.modal__error',
+};
+
 // edit profile
 const profileEditButton = document.querySelector('#profile-edit-button');
 const profileEditModal = document.querySelector('#profile-edit-modal');
@@ -63,6 +73,8 @@ const cardListEl = document.querySelector('.cards__list');
 
 const addFormElement = document.querySelector('#add-card-form');
 const editFormElement = document.querySelector('#edit-card-form');
+const avatarFormElement = document.querySelector('#avatar-form');
+const profilePicture = document.querySelector('.profile__image');
 
 
 
@@ -76,6 +88,15 @@ const api = new Api({
 		authorization: "c11a15fc-f59e-4aaf-ae30-dd9265e1fb3a",
 		"Content-Type": "application/json",
 	}
+});
+
+api
+.getInitialCards()
+.then((data) => {
+	console.log(data);
+})
+.catch((err) => {
+	console.log(err);
 });
 
 //  
@@ -95,10 +116,11 @@ const addCardPopup = new PopupWithForm(
 );
 addCardPopup.setEventListeners();
 
-// const avatarPopup = new PopupWithForm(
-// 	'#avatar-modal',
-// 	handleAvatarFormSubmit
-// );
+const avatarPopup = new PopupWithForm(
+	'#avatar-modal',
+	handleAvatarFormSubmit
+);
+avatarPopup.setEventListeners();
 
 //  
 // Confirm Delete Popup
@@ -272,11 +294,6 @@ profileEditButton.addEventListener('click', () => {
 	editProfilePopup.open();
 });
 
-addPicBtn.addEventListener('click', () => {
-	addCardValidator.resetValidation();
-	addPicPopup.open();
-});
-
 addNewCardButton.addEventListener('click', () => {
 	addCardValidator.resetValidation();
 	addCardValidator.toggleButtonState();
@@ -297,7 +314,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
       },
       '.cards__list'
     );
-    cardSection.renderItems();
+    cardSection.setItems(initialCards);
   })
   .catch((err) => {
     console.log(err);
@@ -323,14 +340,6 @@ previewImageModal.addEventListener('mousedown', handleOverlayClose);
 addCardModalCloseButton.addEventListener('click', () => addCardPopup.close());
 
 
-const config = {
-	formSelector: '.modal__form',
-	inputSelector: '.modal__input',
-	submitButtonSelector: '.modal__button',
-	inactiveButtonClass: 'modal__button_disabled',
-	inputErrorClass: 'modal__input_type_error',
-	errorClass: 'modal__error_visible',
-	errorMessageEl: '.modal__error',
-};
+
 
 
