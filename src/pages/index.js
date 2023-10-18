@@ -139,22 +139,24 @@ avatarPopup.setEventListeners();
 
 const confirmDeletePopup = new PopupConfirmation({
 	popupSelector: "#delete-card-modal", 
+	deleteHandler: handleDeleteCard
 	});
 confirmDeletePopup.setEventListeners();
 
-function handleTrashClick(cardElement, cardId, card) {
-	console.log(cardId);
+function handleDeleteCard(cardElement, cardId) {
+	api.deleteCard(cardId)
+	.then(() => {
+		cardElement.remove();
+		confirmDeletePopup.close();
+	})
+	.catch((err) => {
+		console.log(err);
+	});
+  }
+
+  function handleTrashClick(cardId, cardElement) {
 	confirmDeletePopup.open();
-	confirmDeletePopup.getCardInfo(cardElement, cardId, card);
-	confirmDeletePopup.submitButtonState(true, "Yes");
-	api
-	  .deleteCard(cardId)
-	  .then(() => {
-		confirmDeletePopup.deleteConfirmed(cardElement, cardId, card);
-	  })
-	  .catch((err) => {
-		console.error(err);
-	  })
+	confirmDeletePopup.getCardInfo(cardElement, cardId);
   }
 
 //  
@@ -200,8 +202,8 @@ function createCard(cardData) {
 		'#card-template',
 		handleImageClick,
 		handleLikeClick,
-		handleRemoveLike,
 		handleTrashClick
+		// handleRemoveLike,
 	);
 	cardSection.addItem(card.generateCard());
 }
@@ -261,34 +263,25 @@ function handleAvatarFormSubmit(data) {
 }
 
 function handleLikeClick(card, cardID) {
-	if (card.isLiked()) {
-		handleLikeClick(card, cardID);
-	}
-	api
-	  .addLike(cardID)
-	  .then((data) => {
-		console.log(data);
-		card.setLikeState(data.isLiked);
-	  })
-	  .catch((err) => {
-		console.error(err);
-	  });
-  }
-  
-  function handleRemoveLike(card, cardID) {
-	if (card.isLiked()) {
-		handleRemoveLike(card, cardID);
-	}
-	api
-	  .removeLike(cardID)
-	  .then((data) => {
-		console.log(data);
-		card.setLikeState(data.isLiked);
-	  })
-	  .catch((err) => {
-		console.error(err);
-	  });
-  }
+	// api
+	// 	.likeCard(cardID)
+	// 	.then((data) => {
+	// 		card._handleLikeIcon(data.likes);
+	// 	})
+	// 	.catch((err) => {
+	// 		console.log(err);
+	// 	});
+	const isLiked = card.isLiked();
+  const likePromise = isLiked ? api.deleteLike(cardID) : api.addLike(cardID);
+
+  likePromise
+    .then((data) => {
+      card._handleLikeIcon(data.likes);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
   
 
   function handleOverlayClose(e) {
