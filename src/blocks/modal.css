@@ -192,6 +192,33 @@
   margin-bottom: 5px;
 }
 
+.modal__delete_card {
+  margin-left: 36px;
+  margin-right: 36px;
+  
+}
+
+.modal__heading_delete {
+  padding: 0;
+}
+
+.modal__container_delete {
+  max-width: 430px;
+  max-height: 181px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  height: 100%;
+  flex-shrink: 0;
+  margin-right: 19px;
+  margin-left: 19px;
+  margin-top: 123px;
+  padding-top: 34px;
+  padding-bottom: 34px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15);
+}
 
 
 
@@ -267,5 +294,6 @@
   .popup__input_type_error {
     margin-bottom: 5px;
   }
+
 }
 

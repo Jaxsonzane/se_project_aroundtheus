@@ -2,19 +2,32 @@ class Card {
 	constructor({ name, link, _id, isLiked} , 
 		cardSelector, 
 		handleImageClick,
-		handleRemoveLike,
 		handleTrashClick,
-		handleLikeClick) {
+		handleLikeClick,
+		) {
 		this._name = name;
 		this._link = link;
 		this._handleImageClick = handleImageClick;
 		this._cardSelector = cardSelector;
-		this._id = _id;
-		this._isLiked = isLiked;
-		this._handleRemoveLike = handleRemoveLike;
-		this._handleTrashClick = handleTrashClick;
+		this.id = _id;
+		this.isLiked = isLiked;
 		this._handleLikeClick = handleLikeClick;
+		this._handleTrashClick = handleTrashClick;
 	}
+
+		// event listeners
+		_setEventListeners() {
+			this._likeButton.addEventListener('click', () => {
+				this._handleLikeClick(this);
+			});
+			this._deleteButton.addEventListener('click', () => {
+				this._handleTrashClick(this);
+			});
+			this._cardImage.addEventListener('click', () => {
+				this._handleImageClick(this._name, this._link);
+			});
+		}
+
 	// card template
 	_getTemplate() {
 		const cardElement = document
@@ -26,42 +39,27 @@ class Card {
 		return cardElement;
 	}
 
-	// event listeners
-	_setEventListeners() {
-		this._likeButton.addEventListener('click', () => {
-			this._handleLikeClick(this);
-		});
-		this._deleteButton.addEventListener('click', () => {
-			this._handleTrashClick(this);
-		});
-		this._cardImage.addEventListener('click', () => {
-			this._handleImageClick(this._name, this._link);
-		});
+	_renderLikes() {
+		const likeButton = this._cardElement.querySelector('.card__button-like');
+		if (this.isLiked) {
+			likeButton.classList.add('card__button-like_active');
+		} else {
+			likeButton.classList.remove('card__button-like_active');
+		}
 	}
 
-	_handleLikeIcon(isLiked) {
+	updateIsLiked(isLiked) {
 		this.isLiked = isLiked;
 		this._renderLikes();
 	}
 
-	_renderLikes() {
-		if (this._isLiked) {
-			this._likeButton.classList.add('card__button-like_active');
-		} else {
-			this._likeButton.classList.remove('card__button-like_active');
-		}
-	}
 
-	isLiked() {
-		return this._isLiked;
-	}
 
-	_handleRemoveCard() {
+	handleRemoveCard() {
 		this._cardElement.remove();
 		this._cardElement = null;
 	}
 
-	
 
 	generateCard() {
 		this._cardElement = this._getTemplate();
