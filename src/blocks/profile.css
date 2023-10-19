@@ -86,28 +86,6 @@
   background-position: center;
 }
 
-.profile:hover .profile__image {
-  opacity: 60%;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.avatar__edit_button {
-  background: transparent url(../images/changeimage.svg) no-repeat center;
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: none;
-  visibility: hidden;
-}
-
-.profile:hover .avatar__edit_button {
-  opacity: 60%;
-  visibility: visible;
-}
-
-
 @media screen and (max-width: 600px) {
   .page__section {
     max-width: 600px;
