@@ -27,6 +27,7 @@
 						alt="jacques profile photo"
 						class="profile__image"
 					/>
+					<button class="avatar__edit_button" id="avatar-edit-button" type="button"></button>
 					<div class="profile__info">
 						<h1 class="profile__title">Jacques Cousteau</h1>
 						<button
@@ -150,6 +151,47 @@
 				</form>
 			</div>
 		</div>
+
+		<!-- ------------------------delete modal----------------------------------------------- -->
+		<div class="modal" id="delete-card-modal">
+			<div class="modal__container_delete">
+				<button class="modal__close" type="button"></button>
+
+				<form class="modal__form modal__delete_card" id="delete-card-form">
+					<h2 class="modal__heading modal__heading_delete">Are you sure?</h2>
+					<button
+						class="button modal__button"
+						type="submit"
+					>
+						Yes
+					</button>
+				</form>
+			</div>
+		</div>
+			<!-- ------------------------avatar modal----------------------------------------------- -->
+			<div class="modal" id="avatar-modal">
+				<div class="modal__container">
+					<button class="modal__close" type="button"></button>
+	
+					<h2 class="modal__heading">Change profile photo</h2>
+					<form class="modal__form" id="avatar-form">
+						<input
+							class = "modal__input modal__input_type_avatar"
+							type="url"
+							name="link"
+							id="image-link"
+							placeholder="Image Link"
+							required
+						/>
+						<button
+							class="button modal__button"
+							type="submit"
+						>
+							Save
+						</button>
+					</form>
+				</div>
+			</div>
 		<!-- ------------------------preview modal----------------------------------------------- -->
 		<div class="modal" id="preview-image-modal">
 			<div class="modal__container modal__container_preview">
