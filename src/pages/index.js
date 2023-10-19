@@ -23,6 +23,7 @@ import {
 	addNewCardButton, 
 	addCardModalCloseButton, 
 	profilePicture } from '../utils/constants.js';
+// import { set } from 'core-js/core/dict';
 
 //
 // API
@@ -42,7 +43,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([data, initialCards]) => {
 	console.log(data);
     userInfo.setUserInfo(data);
-	profilePicture.src = data.avatar;
+	userInfo.setAvatar(data.avatar);
     cardSection = new Section(
       {
         items: initialCards,
@@ -174,7 +175,8 @@ function handleAvatarFormSubmit(data) {
 	api
 	.updateAvatar(data)
 	  .then((data) => {
-		userInfo.setUserInfo(data);
+		// userInfo.setUserInfo(data);
+		userInfo.setAvatar(data.avatar);
 		avatarPopup.close();
 	  })
 	  .catch((err) => {

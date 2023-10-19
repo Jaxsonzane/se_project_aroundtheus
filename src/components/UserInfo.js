@@ -8,7 +8,7 @@ class UserInfo {
     getUserInfo() {
       return {
         name: this._nameElement.textContent,
-        job: this._aboutElement.textContent
+        job: this._aboutElement.textContent,
       };
     }
   
