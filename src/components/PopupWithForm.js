@@ -29,7 +29,7 @@ class PopupWithForm extends Popup {
             this._handleFormSubmit(this._getInputValues());
         });
     }
-    submitButtonState(submit, buttonText = "Saving...") {
+    setSubmitButtonState(submit, buttonText = "Saving...") {
         if (submit) {
             this._submitButton.textContent = buttonText;
         } else {

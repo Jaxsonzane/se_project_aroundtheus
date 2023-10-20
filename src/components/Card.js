@@ -40,11 +40,11 @@ class Card {
 	}
 
 	_renderLikes() {
-		const likeButton = this._cardElement.querySelector('.card__button-like');
+		// const likeButton = this._cardElement.querySelector('.card__button-like');
 		if (this.isLiked) {
-			likeButton.classList.add('card__button-like_active');
+			this._likeButton.classList.add('card__button-like_active');
 		} else {
-			likeButton.classList.remove('card__button-like_active');
+			this._likeButton.classList.remove('card__button-like_active');
 		}
 	}
 
