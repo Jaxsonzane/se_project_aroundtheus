@@ -36,7 +36,7 @@ export default class FormValidator {
 		if (errorMessageEl) {
 			errorMessageEl.textContent = '';
 		} else {
-			console.warn(`Error element for ${inputElement.id} not found.`);
+			// console.warn(`Error element for ${inputElement.id} not found.`);
 		}
 	}
 

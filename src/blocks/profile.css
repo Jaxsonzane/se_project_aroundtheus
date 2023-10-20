@@ -86,6 +86,28 @@
   background-position: center;
 }
 
+.profile:hover .profile__image {
+  opacity: 60%;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.avatar__edit_button {
+  background: transparent url(../images/changeimage.svg) no-repeat center;
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: none;
+  visibility: hidden;
+}
+
+.profile:hover .avatar__edit_button {
+  opacity: 60%;
+  visibility: visible;
+}
+
+
 @media screen and (max-width: 600px) {
   .page__section {
     max-width: 600px;
@@ -147,6 +169,13 @@
     box-sizing: border-box;
     padding: 0;
   }
+
+  .avatar__edit_button {
+    margin-left: 78.5px;
+    margin-right: 78.5px;
+    margin-bottom: 26px;
+    margin-top: -175px;
+  }
 }
 
 @media screen and (min-width: 601px) and (max-width: 888px) {
@@ -174,5 +203,9 @@
 
   .profile__add-button {
     min-width: 50px;
+  }
+
+  .avatar__edit_button {
+    margin-left: -10.5px;
   }
 }
