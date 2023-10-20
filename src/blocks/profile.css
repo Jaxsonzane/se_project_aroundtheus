@@ -169,6 +169,13 @@
     box-sizing: border-box;
     padding: 0;
   }
+
+  .avatar__edit_button {
+    margin-left: 78.5px;
+    margin-right: 78.5px;
+    margin-bottom: 26px;
+    margin-top: -175px;
+  }
 }
 
 @media screen and (min-width: 601px) and (max-width: 888px) {
@@ -196,5 +203,9 @@
 
   .profile__add-button {
     min-width: 50px;
+  }
+
+  .avatar__edit_button {
+    margin-left: -10.5px;
   }
 }
