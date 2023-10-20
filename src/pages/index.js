@@ -204,6 +204,9 @@ function handleLikeClick(card) {
 	if (card.isLiked) {
 		api.unlikeCard(card.id).then(() => {
 			card.updateIsLiked(false);
+		})
+		.catch((err) => {
+			console.log(err);
 		});
 	} else {
 		api
@@ -257,8 +260,4 @@ addNewCardButton.addEventListener('click', () => {
 	addCardPopup.open();
 });
 
-profileEditCloseButton.addEventListener('click', () => {
-	editProfilePopup.close();
-});
 
-addCardModalCloseButton.addEventListener('click', () => addCardPopup.close());

@@ -14,7 +14,7 @@ export default class PopupConfirmation extends Popup {
     //     this._card = card;
     // }
 
-    submitButtonState(submit, buttonText = "Deleting...") {
+    setsubmitButtonState(submit, buttonText = "Deleting...") {
         if (submit) {
             this._submitButton.textContent = buttonText;
         } else {

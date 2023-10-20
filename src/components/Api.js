@@ -19,6 +19,7 @@ export default class Api {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers
     })
+    .catch (err => console.log(err))
     .then(res => this._checkResponse(res));
   }
 
