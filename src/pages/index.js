@@ -126,8 +126,8 @@ function getCard(cardData) {
 }
 
 function createCard(cardData) {
-	const cards = getCard(cardData);
-	cardSection.addItem(cards);
+const cards = getCard(cardData);
+cardSection.addItem(cards);
 }
 
 // ADD CARD AND EDIT PROFILE
@@ -136,8 +136,8 @@ function handleAddCardFormSubmit(data) {
 	addCardPopup.setSubmitButtonState(true, 'Saving...');
 	api
 		.addCard(data)
-		.then((data) => {
-			createCard(data);
+		.then((newCard) => {
+			createCard(newCard.data);
 		})
 		.then(() => {
 			addCardPopup.close();
